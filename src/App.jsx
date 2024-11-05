@@ -79,10 +79,14 @@ function App() {
   };
 
   const handlePhysicalKeyPress = (e) => {
-    const key = e.key.toUpperCase();
-    if (key === 'ENTER' || key === 'BACKSPACE' || /^[A-Z]$/.test(key)) {
-      e.preventDefault();
-      handleKeyPress(key);
+    const key = e.key;
+
+    if (key === 'Enter') {
+      handleKeyPress('ENTER');
+    } else if (key === 'Backspace') {
+      handleKeyPress('BACKSPACE');
+    } else if (/^[a-zA-Z]$/.test(key)) {
+      handleKeyPress(key.toUpperCase());
     }
   };
 
