@@ -10,8 +10,6 @@ function App() {
   const [loading, setLoading] = createSignal(true);
   const [gameOver, setGameOver] = createSignal(false);
 
-  let gameContainerRef;
-
   const maxAttempts = 6;
   const wordLength = 5;
 
@@ -93,20 +91,19 @@ function App() {
     setMessage('');
     setGameOver(false);
     getRandomWord();
-    gameContainerRef.focus();
   };
 
   onMount(() => {
     getRandomWord();
-    gameContainerRef.focus();
+    window.addEventListener('keydown', handlePhysicalKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handlePhysicalKeyPress);
+    };
   });
 
   return (
     <div
-      ref={gameContainerRef}
-      class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
-      tabindex="0"
-      onKeyDown={handlePhysicalKeyPress}
+      class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
     >
       <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
       <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
