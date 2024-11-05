@@ -7,17 +7,15 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 1. **Start the Game**
 
    - Open the app to begin playing Wooordle.
-   - The game will automatically fetch a random five-letter word.
 
 2. **Enter Your Guess**
 
-   - You can use your **physical keyboard** or the **on-screen keyboard** to input letters.
-   - Click on the on-screen letters or type using your keyboard to form a five-letter English word.
-   - Your current guess will appear on the game board as you type.
+   - Use your **keyboard** or the **on-screen keyboard** to input letters and form a five-letter word.
+   - Your current guess will appear on the game board.
 
 3. **Submit Your Guess**
 
-   - Press the **"Enter"** key on your keyboard or click the **"Enter"** button on the on-screen keyboard to submit your guess.
+   - Press the "Enter" key on your keyboard or on the on-screen keyboard to submit your guess.
 
 4. **Feedback on Your Guess**
 
@@ -28,31 +26,29 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 5. **Continue Guessing**
 
+   - You have up to six attempts to guess the correct word.
    - Use the feedback from previous guesses to inform your next guess.
-   - You have up to **six attempts** to guess the correct word.
 
 6. **Win or Lose**
 
-   - **Win**: If you guess the correct word within six tries, a success message will appear congratulating you.
-   - **Lose**: If you fail to guess the word after six attempts, the correct word will be revealed in a message.
+   - **Win**: If you guess the correct word within six tries, a success message will appear.
+   - **Lose**: If you fail to guess the word after six attempts, the correct word will be revealed.
 
 7. **Play Again**
 
-   - After completing a game, you can start a new game by clicking the **"Play Again"** button.
-   - The game board will reset, and a new word will be fetched automatically.
+   - After completing a game, you can start a new game by clicking the "Play Again" button.
 
 ## Features
 
-- **Keyboard Input**: Seamlessly use your physical keyboard for a more interactive gaming experience.
-- **On-Screen Keyboard**: Provides an accessible on-screen keyboard for mobile or touch devices.
-- **Responsive Design**: The game is optimized for both desktop and mobile devices.
-- **Visual Feedback**: Immediate visual cues help you gauge how close your guess is.
-- **User-Friendly Interface**: Clean design with intuitive controls.
+- **Keyboard Input**: Use your physical keyboard for a more comfortable gaming experience.
+- **Responsive Design**: The game works seamlessly on desktop and mobile devices.
+- **Visual Feedback**: Provides immediate visual feedback after each guess.
+- **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
 
 ## External APIs
 
 - **Random Word API**: Used to fetch a random five-letter word for the game.
-- **Dictionary API**: Used to verify that guesses are valid English words.
+- **Dictionary API**: Used to verify valid English words for guesses.
 
 ## Requirements
 

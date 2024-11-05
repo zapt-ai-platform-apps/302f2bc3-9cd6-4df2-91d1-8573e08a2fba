@@ -1,5 +1,4 @@
 import { createSignal, onMount, Show } from 'solid-js';
-
 import GameBoard from './components/GameBoard';
 import Keyboard from './components/Keyboard';
 
@@ -11,7 +10,7 @@ function App() {
   const [loading, setLoading] = createSignal(true);
   const [gameOver, setGameOver] = createSignal(false);
 
-  let rootDiv;
+  let gameContainerRef;
 
   const maxAttempts = 6;
   const wordLength = 5;
@@ -83,6 +82,7 @@ function App() {
   const handlePhysicalKeyPress = (e) => {
     const key = e.key.toUpperCase();
     if (key === 'ENTER' || key === 'BACKSPACE' || /^[A-Z]$/.test(key)) {
+      e.preventDefault();
       handleKeyPress(key);
     }
   };
@@ -93,30 +93,23 @@ function App() {
     setMessage('');
     setGameOver(false);
     getRandomWord();
-    if (rootDiv) {
-      rootDiv.focus();
-    }
+    gameContainerRef.focus();
   };
 
   onMount(() => {
     getRandomWord();
-    if (rootDiv) {
-      rootDiv.focus();
-    }
+    gameContainerRef.focus();
   });
 
   return (
     <div
-      ref={(el) => (rootDiv = el)}
+      ref={gameContainerRef}
       class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
+      tabindex="0"
       onKeyDown={handlePhysicalKeyPress}
-      tabIndex="0"
     >
       <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
-      <Show
-        when={!loading()}
-        fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}
-      >
+      <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
         <GameBoard
           wordToGuess={wordToGuess}
           guesses={guesses}
