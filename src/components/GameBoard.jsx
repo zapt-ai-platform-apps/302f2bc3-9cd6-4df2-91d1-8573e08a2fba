@@ -2,10 +2,10 @@ import { For } from 'solid-js';
 
 function GameBoard(props) {
   const getTileClass = (guessLetter, index) => {
-    const correctLetter = props.wordToGuess[index];
+    const correctLetter = props.wordToGuess()[index];
     if (guessLetter === correctLetter) {
       return 'bg-green-500 text-white';
-    } else if (props.wordToGuess.includes(guessLetter)) {
+    } else if (props.wordToGuess().includes(guessLetter)) {
       return 'bg-yellow-500 text-white';
     } else {
       return 'bg-gray-400 text-white';
@@ -22,11 +22,11 @@ function GameBoard(props) {
                 let letter = '';
                 let tileClass = 'border-2 border-gray-500';
 
-                if (rowIndex < props.guesses.length) {
-                  letter = props.guesses[rowIndex][colIndex];
+                if (rowIndex < props.guesses().length) {
+                  letter = props.guesses()[rowIndex][colIndex];
                   tileClass += ' ' + getTileClass(letter, colIndex);
-                } else if (rowIndex === props.guesses.length) {
-                  letter = props.currentGuess[colIndex] || '';
+                } else if (rowIndex === props.guesses().length) {
+                  letter = props.currentGuess()[colIndex] || '';
                 }
 
                 return (

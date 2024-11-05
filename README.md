@@ -10,27 +10,31 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 2. **Enter Your Guess**
 
-   - Use the on-screen keyboard or your physical keyboard to type a five-letter word.
-   - Press the "Enter" key to submit your guess.
+   - Use the on-screen keyboard to click letters and form a five-letter word.
+   - Your current guess will appear on the game board.
 
-3. **Feedback on Your Guess**
+3. **Submit Your Guess**
+
+   - Press the "Enter" key on the on-screen keyboard to submit your guess.
+
+4. **Feedback on Your Guess**
 
    - After submitting, each letter in your guess will change color:
      - **Green**: The letter is in the correct position.
      - **Yellow**: The letter is in the word but in the wrong position.
      - **Gray**: The letter is not in the word at all.
 
-4. **Continue Guessing**
+5. **Continue Guessing**
 
    - You have up to six attempts to guess the correct word.
    - Use the feedback from previous guesses to inform your next guess.
 
-5. **Win or Lose**
+6. **Win or Lose**
 
    - **Win**: If you guess the correct word within six tries, a success message will appear.
    - **Lose**: If you fail to guess the word after six attempts, the correct word will be revealed.
 
-6. **Play Again**
+7. **Play Again**
 
    - After completing a game, you can start a new game by clicking the "Play Again" button.
 
