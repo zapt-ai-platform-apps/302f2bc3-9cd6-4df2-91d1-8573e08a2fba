@@ -20,7 +20,7 @@ function GameBoard(props) {
             <For each={[...Array(props.wordLength).keys()]}>
               {(colIndex) => {
                 let letter = '';
-                let tileClass = 'border-2 border-gray-500';
+                let tileClass = 'border-2 border-gray-500 box-border';
 
                 if (rowIndex < props.guesses().length) {
                   letter = props.guesses()[rowIndex][colIndex];

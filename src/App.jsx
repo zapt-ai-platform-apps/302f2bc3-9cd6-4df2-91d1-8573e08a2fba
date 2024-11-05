@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup, Show } from 'solid-js';
+import { createSignal, onMount, Show } from 'solid-js';
 
 import GameBoard from './components/GameBoard';
 import Keyboard from './components/Keyboard';
@@ -10,6 +10,8 @@ function App() {
   const [message, setMessage] = createSignal('');
   const [loading, setLoading] = createSignal(true);
   const [gameOver, setGameOver] = createSignal(false);
+
+  let rootDiv;
 
   const maxAttempts = 6;
   const wordLength = 5;
@@ -79,14 +81,9 @@ function App() {
   };
 
   const handlePhysicalKeyPress = (e) => {
-    const key = e.key;
-
-    if (key === 'Enter') {
-      handleKeyPress('ENTER');
-    } else if (key === 'Backspace') {
-      handleKeyPress('BACKSPACE');
-    } else if (/^[a-zA-Z]$/.test(key)) {
-      handleKeyPress(key.toUpperCase());
+    const key = e.key.toUpperCase();
+    if (key === 'ENTER' || key === 'BACKSPACE' || /^[A-Z]$/.test(key)) {
+      handleKeyPress(key);
     }
   };
 
@@ -96,27 +93,36 @@ function App() {
     setMessage('');
     setGameOver(false);
     getRandomWord();
+    if (rootDiv) {
+      rootDiv.focus();
+    }
   };
 
   onMount(() => {
     getRandomWord();
-    window.addEventListener('keydown', handlePhysicalKeyPress);
-  });
-
-  onCleanup(() => {
-    window.removeEventListener('keydown', handlePhysicalKeyPress);
+    if (rootDiv) {
+      rootDiv.focus();
+    }
   });
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800">
+    <div
+      ref={(el) => (rootDiv = el)}
+      class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
+      onKeyDown={handlePhysicalKeyPress}
+      tabIndex="0"
+    >
       <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
-      <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
-        <GameBoard 
-          wordToGuess={wordToGuess} 
-          guesses={guesses} 
-          currentGuess={currentGuess} 
-          maxAttempts={maxAttempts} 
-          wordLength={wordLength} 
+      <Show
+        when={!loading()}
+        fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}
+      >
+        <GameBoard
+          wordToGuess={wordToGuess}
+          guesses={guesses}
+          currentGuess={currentGuess}
+          maxAttempts={maxAttempts}
+          wordLength={wordLength}
         />
         <Show when={message()}>
           <div class="mt-4 text-red-600 text-xl">{message()}</div>
