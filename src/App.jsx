@@ -1,4 +1,4 @@
-import { createSignal, onMount, Show } from 'solid-js';
+import { createSignal, onMount, onCleanup, Show } from 'solid-js';
 
 import GameBoard from './components/GameBoard';
 import Keyboard from './components/Keyboard';
@@ -37,10 +37,6 @@ function App() {
       return false;
     }
   };
-
-  onMount(() => {
-    getRandomWord();
-  });
 
   const handleKeyPress = async (key) => {
     if (gameOver()) return;
@@ -82,6 +78,14 @@ function App() {
     }
   };
 
+  const handlePhysicalKeyPress = (e) => {
+    const key = e.key.toUpperCase();
+    if (key === 'ENTER' || key === 'BACKSPACE' || /^[A-Z]$/.test(key)) {
+      e.preventDefault();
+      handleKeyPress(key);
+    }
+  };
+
   const handleReplay = () => {
     setGuesses([]);
     setCurrentGuess('');
@@ -90,8 +94,17 @@ function App() {
     getRandomWord();
   };
 
+  onMount(() => {
+    getRandomWord();
+    window.addEventListener('keydown', handlePhysicalKeyPress);
+  });
+
+  onCleanup(() => {
+    window.removeEventListener('keydown', handlePhysicalKeyPress);
+  });
+
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800">
       <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
       <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
         <GameBoard 
