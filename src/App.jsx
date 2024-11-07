@@ -161,29 +161,31 @@ function App() {
     <div
       class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
     >
-      <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
-      <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
-        <GameBoard
-          wordToGuess={wordToGuess}
-          guesses={guesses}
-          currentGuess={currentGuess}
-          maxAttempts={maxAttempts}
-          wordLength={wordLength}
-          getTileStatuses={getTileStatuses}
-        />
-        <Show when={message()}>
-          <div class="mt-4 text-red-600 text-xl">{message()}</div>
+      <div class="w-full max-w-md">
+        <h1 class="text-4xl font-bold text-purple-600 mb-8 text-center">Wooordle</h1>
+        <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
+          <GameBoard
+            wordToGuess={wordToGuess}
+            guesses={guesses}
+            currentGuess={currentGuess}
+            maxAttempts={maxAttempts}
+            wordLength={wordLength}
+            getTileStatuses={getTileStatuses}
+          />
+          <Show when={message()}>
+            <div class="mt-4 text-red-600 text-xl text-center">{message()}</div>
+          </Show>
+          <Show when={gameOver()}>
+            <button
+              class="mt-4 bg-green-500 text-white font-semibold py-2 px-6 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+              onClick={handleReplay}
+            >
+              Play Again
+            </button>
+          </Show>
+          <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
         </Show>
-        <Show when={gameOver()}>
-          <button
-            class="mt-4 bg-green-500 text-white font-semibold py-2 px-6 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-            onClick={handleReplay}
-          >
-            Play Again
-          </button>
-        </Show>
-        <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
-      </Show>
+      </div>
     </div>
   );
 }

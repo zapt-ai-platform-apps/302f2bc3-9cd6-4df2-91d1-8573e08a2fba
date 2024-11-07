@@ -16,16 +16,20 @@ function Keyboard(props) {
   };
 
   return (
-    <div class="mt-4">
+    <div class="mt-4 w-full max-w-md">
       <For each={keys}>
         {(row) => (
           <div class="flex justify-center mb-1">
             <For each={row}>
               {(key) => (
                 <button
-                  class={`m-1 rounded font-semibold text-xl flex items-center justify-center cursor-pointer ${
-                    key === 'ENTER' || key === 'BACKSPACE' ? 'w-20 h-16' : 'w-12 h-16'
-                  }`}
+                  class={`m-1 rounded font-semibold flex items-center justify-center cursor-pointer
+                    ${
+                      key === 'ENTER' || key === 'BACKSPACE'
+                        ? 'w-16 h-12 text-sm sm:w-20 sm:h-16 sm:text-xl'
+                        : 'w-10 h-12 text-lg sm:w-12 sm:h-16 sm:text-xl'
+                    }
+                  `}
                   classList={{
                     'bg-gray-300 text-black': !getKeyStatus(key),
                     'bg-green-500 text-white': getKeyStatus(key) === 'correct',
