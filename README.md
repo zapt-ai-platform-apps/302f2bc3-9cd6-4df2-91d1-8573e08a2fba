@@ -40,13 +40,14 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 ## Features
 
-- **Large, Easy-to-Press Buttons**: The on-screen keyboard buttons are now bigger and touch-friendly for a better playing experience, especially on mobile devices.
+- **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
+- **On-Screen Keyboard**: Large, touch-friendly buttons for easy input on mobile devices.
+- **Immediate Letter Updates**: Letters display on the game board as you type.
+- **Keyboard Input**: Use your physical keyboard or the on-screen keyboard.
 - **Progressive Web App (PWA)**: Install Wooordle on your device for a native app-like experience.
-- **Immediate Letter Updates**: Letters display on the game board immediately as you type.
-- **Keyboard Input**: Use your physical keyboard or the on-screen keyboard for a comfortable gaming experience.
-- **Responsive Design**: The game works seamlessly on desktop and mobile devices.
 - **Visual Feedback**: Provides immediate visual feedback after each guess.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
+- **Error Handling**: Informative messages guide you if you enter invalid words or incomplete guesses.
 
 ## External APIs
 
