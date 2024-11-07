@@ -28,17 +28,21 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
      - **Yellow Key**: The letter is in the word but not yet in the correct position.
      - **Gray Key**: The letter is not in the word at all.
 
-5. **Continue Guessing**
+5. **Duplicate Letters Handling**
+
+   - If your guess contains duplicate letters and the target word has fewer instances of that letter, the game correctly marks the extra letters as gray (absent). This means the feedback accurately reflects the number of times a letter appears in the actual word.
+
+6. **Continue Guessing**
 
    - You have up to six attempts to guess the correct word.
    - Use the feedback from previous guesses and the keyboard colors to inform your next guess.
 
-6. **Win or Lose**
+7. **Win or Lose**
 
    - **Win**: If you guess the correct word within six tries, a success message will appear.
    - **Lose**: If you fail to guess the word after six attempts, the correct word will be revealed.
 
-7. **Play Again**
+8. **Play Again**
 
    - After completing a game, you can start a new game by clicking the **"Play Again"** button.
 
@@ -49,6 +53,7 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 - **Immediate Letter Updates**: Letters display on the game board as you type.
 - **Keyboard Input**: Use your physical keyboard or the on-screen keyboard.
 - **Visual Feedback**: Provides immediate visual feedback on both the game board and keyboard after each guess.
+- **Duplicate Letters Handling**: Correctly handles words with duplicate letters.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
 - **Error Handling**: Informative messages guide you if you enter invalid words or incomplete guesses.
 - **Letter Tracking**: The on-screen keyboard highlights which letters have been used and their status in the game.

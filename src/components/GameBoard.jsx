@@ -1,17 +1,6 @@
 import { For } from 'solid-js';
 
 function GameBoard(props) {
-  const getTileStatus = (guessLetter, index) => {
-    const correctLetter = props.wordToGuess()[index];
-    if (guessLetter === correctLetter) {
-      return 'correct';
-    } else if (props.wordToGuess().includes(guessLetter)) {
-      return 'present';
-    } else {
-      return 'absent';
-    }
-  };
-
   const Tile = (tileProps) => (
     <div
       class="w-12 h-12 m-0.5 flex items-center justify-center text-2xl font-bold uppercase border-2 box-border"
@@ -29,34 +18,38 @@ function GameBoard(props) {
   return (
     <div class="mb-4">
       <For each={[...Array(props.maxAttempts).keys()]}>
-        {(rowIndex) => (
-          <div class="flex justify-center mb-1">
-            <For each={[...Array(props.wordLength).keys()]}>
-              {(colIndex) => {
-                return (
-                  <Tile
-                    letter={() => {
-                      if (rowIndex < props.guesses().length) {
-                        return props.guesses()[rowIndex][colIndex];
-                      } else if (rowIndex === props.guesses().length) {
-                        return props.currentGuess()[colIndex] || '';
-                      } else {
-                        return '';
-                      }
-                    }}
-                    status={() => {
-                      if (rowIndex < props.guesses().length) {
-                        return getTileStatus(props.guesses()[rowIndex][colIndex], colIndex);
-                      } else {
-                        return '';
-                      }
-                    }}
-                  />
-                );
-              }}
-            </For>
-          </div>
-        )}
+        {(rowIndex) => {
+          const guess = props.guesses()[rowIndex];
+          const statuses = guess ? props.getTileStatuses(guess) : [];
+          return (
+            <div class="flex justify-center mb-1">
+              <For each={[...Array(props.wordLength).keys()]}>
+                {(colIndex) => {
+                  return (
+                    <Tile
+                      letter={() => {
+                        if (rowIndex < props.guesses().length) {
+                          return props.guesses()[rowIndex][colIndex];
+                        } else if (rowIndex === props.guesses().length) {
+                          return props.currentGuess()[colIndex] || '';
+                        } else {
+                          return '';
+                        }
+                      }}
+                      status={() => {
+                        if (rowIndex < props.guesses().length) {
+                          return statuses[colIndex];
+                        } else {
+                          return '';
+                        }
+                      }}
+                    />
+                  );
+                }}
+              </For>
+            </div>
+          );
+        }}
       </For>
     </div>
   );

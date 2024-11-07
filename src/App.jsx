@@ -38,14 +38,16 @@ function App() {
     }
   };
 
-  const updateLetterStatuses = (guess) => {
+  const updateLetterStatuses = (guess, statuses) => {
     let newStatuses = { ...letterStatuses() };
 
     for (let i = 0; i < guess.length; i++) {
       const letter = guess[i];
-      if (wordToGuess()[i] === letter) {
+      const status = statuses[i];
+
+      if (status === 'correct') {
         newStatuses[letter] = 'correct';
-      } else if (wordToGuess().includes(letter)) {
+      } else if (status === 'present') {
         if (newStatuses[letter] !== 'correct') {
           newStatuses[letter] = 'present';
         }
@@ -79,14 +81,15 @@ function App() {
         return;
       }
 
+      const statuses = getTileStatuses(currentGuess());
       setGuesses([...guesses(), currentGuess()]);
 
-      updateLetterStatuses(currentGuess());
+      updateLetterStatuses(currentGuess(), statuses);
 
       if (currentGuess() === wordToGuess()) {
         setMessage('Congratulations!');
         setGameOver(true);
-      } else if (guesses().length === maxAttempts) {
+      } else if (guesses().length + 1 === maxAttempts) {
         setMessage(`Game over! The word was ${wordToGuess()}`);
         setGameOver(true);
       }
@@ -118,6 +121,34 @@ function App() {
     getRandomWord();
   };
 
+  const getTileStatuses = (guess) => {
+    const statuses = Array(wordLength).fill('absent');
+    const answerLetters = wordToGuess().split('');
+    const guessLetters = guess.split('');
+
+    // First pass: mark correct letters
+    for (let i = 0; i < wordLength; i++) {
+      if (guessLetters[i] === answerLetters[i]) {
+        statuses[i] = 'correct';
+        answerLetters[i] = null; // Remove matched letter
+        guessLetters[i] = null;
+      }
+    }
+
+    // Second pass: mark present letters
+    for (let i = 0; i < wordLength; i++) {
+      if (guessLetters[i]) {
+        const index = answerLetters.indexOf(guessLetters[i]);
+        if (index !== -1) {
+          statuses[i] = 'present';
+          answerLetters[index] = null; // Remove matched letter
+        }
+      }
+    }
+
+    return statuses;
+  };
+
   onMount(() => {
     getRandomWord();
     window.addEventListener('keydown', handlePhysicalKeyPress);
@@ -138,6 +169,7 @@ function App() {
           currentGuess={currentGuess}
           maxAttempts={maxAttempts}
           wordLength={wordLength}
+          getTileStatuses={getTileStatuses}
         />
         <Show when={message()}>
           <div class="mt-4 text-red-600 text-xl">{message()}</div>
