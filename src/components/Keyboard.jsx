@@ -19,7 +19,9 @@ function Keyboard(props) {
             <For each={row}>
               {(key) => (
                 <button
-                  class="flex-1 m-0.5 py-2 rounded bg-gray-300 font-semibold cursor-pointer text-black"
+                  class={`m-1 rounded bg-gray-300 font-semibold cursor-pointer text-xl flex items-center justify-center ${
+                    key === 'ENTER' || key === 'BACKSPACE' ? 'w-20 h-16' : 'w-12 h-16'
+                  }`}
                   onClick={() => handleClick(key)}
                 >
                   {key === 'BACKSPACE' ? '←' : key}

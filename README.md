@@ -15,7 +15,7 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 3. **Submit Your Guess**
 
-   - Press the "Enter" key on your keyboard or on the on-screen keyboard to submit your guess.
+   - Press the **"Enter"** key on your keyboard or on the on-screen keyboard to submit your guess.
 
 4. **Feedback on Your Guess**
 
@@ -36,24 +36,33 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 7. **Play Again**
 
-   - After completing a game, you can start a new game by clicking the "Play Again" button.
+   - After completing a game, you can start a new game by clicking the **"Play Again"** button.
 
 ## Features
 
-- **Immediate Letter Updates**: Letters now display on the game board immediately as you type.
+- **Large, Easy-to-Press Buttons**: The on-screen keyboard buttons are now bigger and touch-friendly for a better playing experience, especially on mobile devices.
+- **Progressive Web App (PWA)**: Install Wooordle on your device for a native app-like experience.
+- **Immediate Letter Updates**: Letters display on the game board immediately as you type.
 - **Keyboard Input**: Use your physical keyboard or the on-screen keyboard for a comfortable gaming experience.
 - **Responsive Design**: The game works seamlessly on desktop and mobile devices.
 - **Visual Feedback**: Provides immediate visual feedback after each guess.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
-- **Enhanced Compatibility**: Resolved issues with letters not displaying on desktop devices.
 
 ## External APIs
 
 - **Random Word API**: Used to fetch a random five-letter word for the game.
 - **Dictionary API**: Used to verify valid English words for guesses.
 
-## Requirements
+## How to Install as a PWA
 
-- A modern web browser with JavaScript enabled.
+1. **On Mobile Devices**:
+   - Open the app in your browser.
+   - Tap the **"Add to Home Screen"** option from your browser menu.
+   - The app icon will appear on your home screen for quick access.
+
+2. **On Desktop Browsers**:
+   - Open the app in your browser.
+   - Click on the **install icon** in the address bar or select **"Install"** from the browser menu.
+   - The app will be installed on your system like a native application.
 
 Enjoy playing Wooordle and challenge yourself to guess the word!
