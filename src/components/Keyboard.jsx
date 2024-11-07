@@ -19,7 +19,7 @@ function Keyboard(props) {
             <For each={row}>
               {(key) => (
                 <button
-                  class={`flex-1 m-0.5 py-2 rounded bg-gray-300 font-semibold cursor-pointer`}
+                  class="flex-1 m-0.5 py-2 rounded bg-gray-300 font-semibold cursor-pointer text-black"
                   onClick={() => handleClick(key)}
                 >
                   {key === 'BACKSPACE' ? '←' : key}

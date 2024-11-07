@@ -12,7 +12,6 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
    - Use your **physical keyboard** or the **on-screen keyboard** to input letters and form a five-letter word.
    - Your current guess will appear on the game board.
-   - **Note**: The game now supports keyboard input on desktop devices.
 
 3. **Submit Your Guess**
 
@@ -41,10 +40,11 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 
 ## Features
 
-- **Keyboard Input**: Use your physical keyboard for a more comfortable gaming experience.
+- **Keyboard Input**: Use your physical keyboard or the on-screen keyboard for a comfortable gaming experience.
 - **Responsive Design**: The game works seamlessly on desktop and mobile devices.
 - **Visual Feedback**: Provides immediate visual feedback after each guess.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
+- **Enhanced Compatibility**: Resolved issues with letters not displaying on desktop devices.
 
 ## External APIs
 

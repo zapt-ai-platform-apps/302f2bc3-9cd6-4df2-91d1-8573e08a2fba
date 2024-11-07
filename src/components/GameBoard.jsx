@@ -1,14 +1,14 @@
 import { For } from 'solid-js';
 
 function GameBoard(props) {
-  const getTileClass = (guessLetter, index) => {
+  const getTileStatus = (guessLetter, index) => {
     const correctLetter = props.wordToGuess()[index];
     if (guessLetter === correctLetter) {
-      return 'bg-green-500 text-white';
+      return 'correct';
     } else if (props.wordToGuess().includes(guessLetter)) {
-      return 'bg-yellow-500 text-white';
+      return 'present';
     } else {
-      return 'bg-gray-400 text-white';
+      return 'absent';
     }
   };
 
@@ -20,18 +20,23 @@ function GameBoard(props) {
             <For each={[...Array(props.wordLength).keys()]}>
               {(colIndex) => {
                 let letter = '';
-                let tileClass = 'border-2 border-gray-500';
-
+                let status = '';
                 if (rowIndex < props.guesses().length) {
                   letter = props.guesses()[rowIndex][colIndex];
-                  tileClass += ' ' + getTileClass(letter, colIndex);
+                  status = getTileStatus(letter, colIndex);
                 } else if (rowIndex === props.guesses().length) {
                   letter = props.currentGuess()[colIndex] || '';
                 }
 
                 return (
                   <div
-                    class={`w-12 h-12 m-0.5 flex items-center justify-center text-2xl font-bold uppercase ${tileClass}`}
+                    class="w-12 h-12 m-0.5 flex items-center justify-center text-2xl font-bold uppercase border-2 box-border"
+                    classList={{
+                      'border-gray-500 text-black': !status,
+                      'bg-green-500 text-white border-green-500': status === 'correct',
+                      'bg-yellow-500 text-white border-yellow-500': status === 'present',
+                      'bg-gray-400 text-white border-gray-400': status === 'absent',
+                    }}
                   >
                     {letter}
                   </div>
