@@ -9,6 +9,7 @@ function App() {
   const [message, setMessage] = createSignal('');
   const [loading, setLoading] = createSignal(true);
   const [gameOver, setGameOver] = createSignal(false);
+  const [letterStatuses, setLetterStatuses] = createSignal({});
 
   const maxAttempts = 6;
   const wordLength = 5;
@@ -37,6 +38,27 @@ function App() {
     }
   };
 
+  const updateLetterStatuses = (guess) => {
+    let newStatuses = { ...letterStatuses() };
+
+    for (let i = 0; i < guess.length; i++) {
+      const letter = guess[i];
+      if (wordToGuess()[i] === letter) {
+        newStatuses[letter] = 'correct';
+      } else if (wordToGuess().includes(letter)) {
+        if (newStatuses[letter] !== 'correct') {
+          newStatuses[letter] = 'present';
+        }
+      } else {
+        if (!newStatuses[letter]) {
+          newStatuses[letter] = 'absent';
+        }
+      }
+    }
+
+    setLetterStatuses(newStatuses);
+  };
+
   const handleKeyPress = async (key) => {
     if (gameOver()) return;
 
@@ -59,10 +81,12 @@ function App() {
 
       setGuesses([...guesses(), currentGuess()]);
 
+      updateLetterStatuses(currentGuess());
+
       if (currentGuess() === wordToGuess()) {
         setMessage('Congratulations!');
         setGameOver(true);
-      } else if (guesses().length === maxAttempts) {
+      } else if (guesses().length + 1 === maxAttempts) {
         setMessage(`Game over! The word was ${wordToGuess()}`);
         setGameOver(true);
       }
@@ -90,6 +114,7 @@ function App() {
     setCurrentGuess('');
     setMessage('');
     setGameOver(false);
+    setLetterStatuses({});
     getRandomWord();
   };
 
@@ -125,7 +150,7 @@ function App() {
             Play Again
           </button>
         </Show>
-        <Keyboard onKeyPress={handleKeyPress} />
+        <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
       </Show>
     </div>
   );

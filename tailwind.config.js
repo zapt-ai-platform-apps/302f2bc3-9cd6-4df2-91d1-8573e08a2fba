@@ -15,6 +15,7 @@ export default {
     'bg-gray-400',
     'border-gray-400',
     'border-gray-500',
+    'bg-gray-300',
     'text-black',
   ],
   plugins: [],

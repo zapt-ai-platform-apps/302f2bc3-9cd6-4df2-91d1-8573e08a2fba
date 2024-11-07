@@ -1,6 +1,6 @@
 # Wooordle
 
-Wooordle is a web-based word guessing game inspired by Wordle. Players have six attempts to guess a five-letter word. After each guess, the tiles will change color to show how close your guess was to the actual word.
+Wooordle is a web-based word guessing game inspired by Wordle. Players have six attempts to guess a five-letter word. After each guess, the tiles will change color to show how close your guess was to the actual word. The on-screen keyboard also updates to show which letters have been used and their status.
 
 ## How to Play
 
@@ -23,11 +23,15 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
      - **Green**: The letter is in the correct position.
      - **Yellow**: The letter is in the word but in the wrong position.
      - **Gray**: The letter is not in the word at all.
+   - The **on-screen keyboard** will also update:
+     - **Green Key**: The letter is in the correct position in one of your guesses.
+     - **Yellow Key**: The letter is in the word but not yet in the correct position.
+     - **Gray Key**: The letter is not in the word at all.
 
 5. **Continue Guessing**
 
    - You have up to six attempts to guess the correct word.
-   - Use the feedback from previous guesses to inform your next guess.
+   - Use the feedback from previous guesses and the keyboard colors to inform your next guess.
 
 6. **Win or Lose**
 
@@ -41,14 +45,13 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 ## Features
 
 - **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
-- **On-Screen Keyboard**: Large, touch-friendly buttons for easy input on mobile devices.
+- **On-Screen Keyboard**: Large, touch-friendly buttons that show letter usage and feedback.
 - **Immediate Letter Updates**: Letters display on the game board as you type.
 - **Keyboard Input**: Use your physical keyboard or the on-screen keyboard.
-- **Progressive Web App (PWA)**: Install Wooordle on your device for a native app-like experience.
-- **Visual Feedback**: Provides immediate visual feedback after each guess.
+- **Visual Feedback**: Provides immediate visual feedback on both the game board and keyboard after each guess.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
 - **Error Handling**: Informative messages guide you if you enter invalid words or incomplete guesses.
-- **Bug Fixes**: Resolved an issue where the game would end before the last allowed attempt.
+- **Letter Tracking**: The on-screen keyboard highlights which letters have been used and their status in the game.
 
 ## External APIs
 
