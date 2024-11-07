@@ -62,7 +62,7 @@ function App() {
       if (currentGuess() === wordToGuess()) {
         setMessage('Congratulations!');
         setGameOver(true);
-      } else if (guesses().length === maxAttempts - 1) {
+      } else if (guesses().length === maxAttempts) {
         setMessage(`Game over! The word was ${wordToGuess()}`);
         setGameOver(true);
       }

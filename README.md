@@ -48,6 +48,7 @@ Wooordle is a web-based word guessing game inspired by Wordle. Players have six 
 - **Visual Feedback**: Provides immediate visual feedback after each guess.
 - **User-Friendly Interface**: Clean and intuitive design for an enjoyable user experience.
 - **Error Handling**: Informative messages guide you if you enter invalid words or incomplete guesses.
+- **Bug Fixes**: Resolved an issue where the game would end before the last allowed attempt.
 
 ## External APIs
 
