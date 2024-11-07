@@ -103,7 +103,7 @@ function App() {
 
   return (
     <div
-      class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
+      class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 flex flex-col items-center text-gray-800"
     >
       <h1 class="text-4xl font-bold text-purple-600 mb-8">Wooordle</h1>
       <Show when={!loading()} fallback={<div class="text-2xl font-bold text-purple-600">Loading...</div>}>
