@@ -13,6 +13,7 @@ function Keyboard(props) {
 
   const handleClick = (key) => {
     props.onKeyPress(key);
+    console.log('Key pressed:', key);
   };
 
   return (
@@ -31,10 +32,10 @@ function Keyboard(props) {
                     }
                   `}
                   classList={{
-                    'bg-gray-300 text-black': !getKeyStatus(key),
-                    'bg-green-500 text-white': getKeyStatus(key) === 'correct',
+                    'bg-gray-600 text-white': !getKeyStatus(key),
+                    'bg-green-600 text-white': getKeyStatus(key) === 'correct',
                     'bg-yellow-500 text-white': getKeyStatus(key) === 'present',
-                    'bg-gray-400 text-white': getKeyStatus(key) === 'absent',
+                    'bg-gray-700 text-white': getKeyStatus(key) === 'absent',
                   }}
                   onClick={() => handleClick(key)}
                 >

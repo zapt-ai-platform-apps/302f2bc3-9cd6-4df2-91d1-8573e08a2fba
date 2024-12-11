@@ -10,10 +10,10 @@ function GameBoard(props) {
         md:w-16 md:h-16 md:text-3xl
       "
       classList={{
-        'border-gray-500 text-black': !tileProps.status(),
-        'bg-green-500 text-white border-green-500': tileProps.status() === 'correct',
+        'border-gray-500 text-white': !tileProps.status(),
+        'bg-green-600 text-white border-green-600': tileProps.status() === 'correct',
         'bg-yellow-500 text-white border-yellow-500': tileProps.status() === 'present',
-        'bg-gray-400 text-white border-gray-400': tileProps.status() === 'absent',
+        'bg-gray-700 text-white border-gray-700': tileProps.status() === 'absent',
       }}
     >
       {tileProps.letter()}
