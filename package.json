@@ -1,7 +1,7 @@
 {
   "name": "wooordle",
   "version": "1.0.0",
-  "description": "Wooordle - A Wordle clone built with SolidJS and Tailwind",
+  "description": "Wooordle - A Wordle clone built with React and Tailwind",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,15 +9,20 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "solid-js": "^1.8.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@sentry/browser": "^8.35.0",
-    "@solidjs/router": "^0.8.4"
+    "@zapt/zapt-js": "^1.0.6",
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.5",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/auth-ui-react": "^0.4.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.7",
-    "vite-plugin-solid": "^2.10.2"
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
