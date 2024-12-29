@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { getRandomWord, checkWordValidity } from '../utils/api';
+import { checkWordValidity } from '../utils/api';
 import { getTileStatuses } from '../utils/gameUtils';
+import useRandomWord from './useRandomWord';
 
 function useGameLogic() {
-  const [wordToGuess, setWordToGuess] = useState('');
   const [guesses, setGuesses] = useState([]);
   const [currentGuess, setCurrentGuess] = useState('');
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [letterStatuses, setLetterStatuses] = useState({});
 
   const maxAttempts = 6;
   const wordLength = 5;
+
+  const { wordToGuess, loading, loadRandomWord } = useRandomWord(setMessage);
 
   const updateLetterStatuses = (guess, statuses) => {
     const newStatuses = { ...letterStatuses };
@@ -48,12 +49,14 @@ function useGameLogic() {
         return;
       }
 
-      setLoading(true);
+      if (!wordToGuess) {
+        setMessage('Word not loaded. Please try again.');
+        return;
+      }
 
       const isValid = await checkWordValidity(currentGuess);
       if (!isValid) {
         setMessage('Not a valid word');
-        setLoading(false);
         return;
       }
 
@@ -71,8 +74,6 @@ function useGameLogic() {
       }
 
       setCurrentGuess('');
-      setLoading(false);
-
     } else if (key === 'BACKSPACE') {
       setCurrentGuess(currentGuess.slice(0, -1));
     } else if (currentGuess.length < wordLength && /^[A-Z]$/.test(key)) {
@@ -97,26 +98,11 @@ function useGameLogic() {
     loadRandomWord();
   };
 
-  const loadRandomWord = async () => {
-    setLoading(true);
-    try {
-      const word = await getRandomWord();
-      setWordToGuess(word.toUpperCase());
-    } catch (error) {
-      console.error('Error fetching word:', error);
-      setMessage('Error fetching word. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    loadRandomWord();
     window.addEventListener('keydown', handlePhysicalKeyPress);
     return () => {
       window.removeEventListener('keydown', handlePhysicalKeyPress);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
