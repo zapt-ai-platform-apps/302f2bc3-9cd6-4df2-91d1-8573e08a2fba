@@ -27,7 +27,8 @@ function GameBoard({ wordToGuess, guesses, currentGuess, maxAttempts, wordLength
   const rows = [];
   for (let rowIndex = 0; rowIndex < maxAttempts; rowIndex++) {
     const guess = guesses[rowIndex];
-    const statuses = guess ? getTileStatuses(guess) : [];
+    const statuses = guess ? getTileStatuses(guess, wordToGuess, wordLength) : [];
+
     const tiles = [];
 
     for (let colIndex = 0; colIndex < wordLength; colIndex++) {
